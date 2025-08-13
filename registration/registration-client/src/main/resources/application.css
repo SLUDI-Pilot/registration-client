@@ -213,7 +213,7 @@
 	-fx-padding: 10.0 10.0 10.0 10.0;
 	-fx-border-width: 1.0;
 	-fx-border-color: #dee2e6 transparent transparent transparent;
-	-fx-background-color: #dee2e6;
+	-fx-background-color: transparent;
 }
 
 .content {
@@ -465,6 +465,7 @@
 .loginLeftPaneStyle {
 	-fx-pref-height: 326.0px;
 	-fx-pref-width: 285.0px;
+	-fx-background-color: transparent;
 }
 
 .loginCenterPaneStyle {
@@ -631,8 +632,10 @@ Working on new Css by taleev
 */
 #loginScreen {
 	-fx-background-image: url('/images/LoginBackGround.png');
-	-fx-background-size: cover, auto;
-	-fx-background-position: left top, center;
+	-fx-background-size: 100% 100%;        /* Fill the entire pane */
+        -fx-background-repeat: no-repeat;
+        -fx-background-position: center center;
+        -fx-background-color: #0b6a82; /* No blend/fade color */
 }
 
 #header-section {
@@ -1759,7 +1762,7 @@ Working on new Css by taleev
 }
 
 .imageAnchorPaneStyle {
-	-fx-background-color: #F4F4F4;
+	-fx-background-color: transparent;
 }
 /*Registration pending approval page design ends */
 .authenticationStyle {

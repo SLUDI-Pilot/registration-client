@@ -38,6 +38,7 @@ public class UiFieldDTO {
 	private String fieldType;
 	private String format;
 	private List<Validator> validators;
+	private HashMap<String, String> alignmentGroupLabel;
 	private String fieldCategory;
 	private String alignmentGroup;
 	private RequiredOnExpr visible;

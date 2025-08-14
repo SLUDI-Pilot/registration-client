@@ -25,7 +25,11 @@ public class RegistrationConstants {
 
 	/*********** UI Constants **********/
 	// paths of FXML pages to be loaded
-
+	public static final String REGISTRATION_DATA_DEMO = "registrationDTOContentDemo";
+	public static final String DEMOGRAPHIC_GROUP = "preRegParentPaneSection";
+	public static final String DEMOGRAPHIC_GROUP_LABEL = "demoGraphicCustomLabel";
+	public static final String DEMOGRAPHIC_FIELD = "demoGraphicCustomField";
+	public static final String DOCUMENT_COMBOBOX_FIELD = "documentCustomCombobox";
 	public static final String ERROR_PAGE = "/fxml/ErrorPage.fxml";
 	public static final String INITIAL_PAGE = "/fxml/RegistrationLogin.fxml";
 	public static final String HOME_PAGE = "/fxml/RegistrationOfficerLayout.fxml";

@@ -22,7 +22,7 @@
         <Label text="  " />
         <Label text="%regClientVersion" style="-fx-text-fill: white; -fx-font-weight: bold;"/>
         <Label text=" : " />
-        <Label fx:id="versionValueLabel" style="-fx-text-fill: white;"/>
+        <Label fx:id="versionValueLabel" style="-fx-text-fill: white; -fx-font-weight: bold;"/>
       </children>
     </HBox>
   </bottom>

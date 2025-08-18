@@ -8,18 +8,14 @@ import static java.io.File.separator;
 import java.io.*;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import java.util.*;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
@@ -28,7 +24,9 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.json.JSONArray;
 
+import io.mosip.registration.context.SessionContext;
 import io.mosip.commons.packet.dto.packet.SimpleDto;
 import io.mosip.kernel.clientcrypto.service.impl.ClientCryptoFacade;
 import io.mosip.kernel.clientcrypto.util.ClientCryptoUtils;
@@ -219,6 +217,10 @@ public class PreRegZipHandlingServiceImpl extends BaseService implements PreRegZ
 		try {
 			if (!StringUtils.isEmpty(jsonString) && validateDemographicInfoObject()) {
 				JSONObject jsonObject = (JSONObject) new JSONObject(jsonString).get("identity");
+				JSONArray array=new JSONArray();
+				array.put(new JSONObject().put("language", "eng").put("value","10"));
+				jsonObject.put("homeless", array);
+				SessionContext.map().put(RegistrationConstants.REGISTRATION_DATA_DEMO, new HashMap<String,Object>());
 				//Always use latest schema, ignoring missing / removed fields
 				RegistrationDTO registrationDTO = getRegistrationDTOFromSession();
 				List<UiFieldDTO> fieldList = identitySchemaService.getAllFieldSpec(registrationDTO.getProcessId(), registrationDTO.getIdSchemaVersion());
@@ -232,7 +234,7 @@ public class PreRegZipHandlingServiceImpl extends BaseService implements PreRegZ
 					case "documentType":
 						DocumentDto documentDto = new DocumentDto();
 						if(jsonObject.has(field.getId()) && jsonObject.get(field.getId()) != null) {
-							JSONObject fieldValue = jsonObject.getJSONObject(field.getId());							
+							JSONObject fieldValue = jsonObject.getJSONObject(field.getId());
 							documentDto.setCategory(field.getSubType());
 							documentDto.setOwner("Applicant");
 							documentDto.setFormat(fieldValue.getString("format"));
@@ -261,6 +263,7 @@ public class PreRegZipHandlingServiceImpl extends BaseService implements PreRegZ
 									break;
 								default:
 									getRegistrationDTOFromSession().getDemographics().put(field.getId(), fieldValue);
+									getRegistrationDTODemographics().put(field.getId(), fieldValue);
 							}
 						}
 						break;

@@ -18,12 +18,12 @@
     <RowConstraints percentHeight="100.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fx:id="mosipLogo" fitHeight="55.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT">
+      <ImageView fx:id="mosipLogo" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT">
          <image>
             <Image url="@../images/logo-final-small.png" />
          </image>
          <GridPane.margin>
-            <Insets left="22.0" />
+             <Insets left="10.0" right="15.0"/>
          </GridPane.margin>
       </ImageView>
       <GridPane styleClass="headerDetails" GridPane.columnIndex="2">

@@ -20,7 +20,7 @@
       <children>
         <Label text="%mosip.io" />
         <Label text="  " />
-        <Label text="%regClientVersion" style="-fx-text-fill: white;"/>
+        <Label text="%regClientVersion" style="-fx-text-fill: white; -fx-font-weight: bold;"/>
         <Label text=" : " />
         <Label fx:id="versionValueLabel" style="-fx-text-fill: white;"/>
       </children>

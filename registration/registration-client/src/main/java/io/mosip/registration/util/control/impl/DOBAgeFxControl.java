@@ -69,7 +69,7 @@ public class DOBAgeFxControl extends FxControl {
 
 		HBox dobHBox = new HBox();
 		dobHBox.setId(uiFieldDTO.getId() + RegistrationConstants.HBOX);
-		dobHBox.setSpacing(10);
+		dobHBox.setSpacing(4);
 
 		String mandatorySuffix = getMandatorySuffix(uiFieldDTO);
 
@@ -99,27 +99,27 @@ public class DOBAgeFxControl extends FxControl {
 		dobHBox.getChildren().add(addDateTextField(uiFieldDTO, RegistrationConstants.YYYY,
 				resourceBundle.getString(RegistrationConstants.YYYY)));
 
-//		/** OR Label */
-//		dobHBox.getChildren()
-//				.add(getLabel(uiSchemaDTO.getId() + RegistrationConstants.LABEL,
-//						resourceBundle.getString("ageOrDOBField"), RegistrationConstants.DEMOGRAPHIC_FIELD_LABEL, true,
-//						ageVBox.getWidth()));
+//    /** OR Label */
+//    dobHBox.getChildren()
+//          .add(getLabel(uiSchemaDTO.getId() + RegistrationConstants.LABEL,
+//                resourceBundle.getString("ageOrDOBField"), RegistrationConstants.DEMOGRAPHIC_FIELD_LABEL, true,
+//                ageVBox.getWidth()));
 
 		Label label = getLabel(uiFieldDTO.getId() + "OR" + RegistrationConstants.LABEL,
 				resourceBundle.getString("ageOrDOBField"), RegistrationConstants.DEMOGRAPHIC_FIELD_LABEL, true, dobHBox.getWidth());
 		label.setMinWidth(Region.USE_PREF_SIZE);
 		label.setAlignment(Pos.CENTER);
 		dobHBox.getChildren().add(label);
-		
+
 		/** Add Age Field */
 		dobHBox.getChildren().add(addDateTextField(uiFieldDTO, RegistrationConstants.AGE_FIELD,
 				resourceBundle.getString(RegistrationConstants.AGE_FIELD)));
 
-//		/** YEARS Label */
-//		dobHBox.getChildren()
-//				.add(getLabel(uiSchemaDTO.getId() + RegistrationConstants.LABEL,
-//						"YEARS, RegistrationConstants.DEMOGRAPHIC_FIELD_LABEL, true,
-//						ageVBox.getWidth()));
+//    /** YEARS Label */
+//    dobHBox.getChildren()
+//          .add(getLabel(uiSchemaDTO.getId() + RegistrationConstants.LABEL,
+//                "YEARS, RegistrationConstants.DEMOGRAPHIC_FIELD_LABEL, true,
+//                ageVBox.getWidth()));
 		ageVBox.getChildren().add(dobHBox);
 
 		/** Validation message (Invalid/wrong,,etc,.) */
@@ -133,19 +133,32 @@ public class DOBAgeFxControl extends FxControl {
 	}
 
 	private VBox addDateTextField(UiFieldDTO uiFieldDTO, String dd, String text) {
-
 		VBox dateVBox = new VBox();
 		dateVBox.setId(uiFieldDTO.getId() + dd + RegistrationConstants.VBOX);
 
-		double prefWidth = dateVBox.getPrefWidth();
 
-		/** DOB Label */
-		dateVBox.getChildren().add(getLabel(uiFieldDTO.getId() + dd + RegistrationConstants.LABEL, text,
-				RegistrationConstants.DEMOGRAPHIC_FIELD_LABEL, false, prefWidth));
+		dateVBox.getChildren().add(getLabel(
+				uiFieldDTO.getId() + dd + RegistrationConstants.LABEL,
+				text,
+				RegistrationConstants.DEMOGRAPHIC_FIELD_LABEL,
+				false,
+				48
+		));
 
-		/** DOB Text Field */
-		dateVBox.getChildren().add(getTextField(uiFieldDTO.getId() + dd + RegistrationConstants.TEXT_FIELD, text,
-				RegistrationConstants.DEMOGRAPHIC_TEXTFIELD, prefWidth, false));
+
+		TextField textField = getTextField(
+				uiFieldDTO.getId() + dd + RegistrationConstants.TEXT_FIELD,
+				text,
+				RegistrationConstants.DEMOGRAPHIC_TEXTFIELD,
+				48,
+				false
+		);
+
+		textField.setPrefWidth(48);
+		textField.setMinWidth(48);
+		textField.setMaxWidth(48);
+
+		dateVBox.getChildren().add(textField);
 
 		return dateVBox;
 	}
